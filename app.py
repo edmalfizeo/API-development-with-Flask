@@ -10,13 +10,19 @@ tasks = []
 @app.route('/tasks', methods=['POST'])
 def create_task():
     data = request.get_json()
+    
+    title = data.get('title')
+    
+    if not title or not title.strip():  # Verifica se é nulo ou string vazia
+        return jsonify({'Message': 'Title is required'}), 400
+    
     new_task = Task(
         id=uuid4(),
-        title=data.get('title'),
+        title=title,
         description=data.get('description', '')
     )
     tasks.append(new_task)
-    return jsonify({'Message': 'Task created successfully'}), 201
+    return jsonify({'Message': 'Task created successfully', 'id': new_task.id}, ), 201
 
 @app.route('/tasks', methods=['GET'])
 def list_tasks():
@@ -43,7 +49,7 @@ def update_task(id):
             task.description = data.get('description')
             task.completed = data.get('completed')
             return jsonify({'Message': 'Task updated successfully'})
-        return jsonify({'Message': 'Task not found'}), 404    
+    return jsonify({'Message': 'Task not found'}), 404    
 
 @app.route('/tasks/<uuid:id>', methods=['DELETE'])
 def delete_task(id):
