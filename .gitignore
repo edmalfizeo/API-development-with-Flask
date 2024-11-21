@@ -1,0 +1,49 @@
+# Ambiente virtual
+venv/
+
+# Compilados Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Configurações do editor/IDE
+.idea/
+.vscode/
+*.swp
+*~
+
+# Logs e arquivos temporários
+*.log
+*.pot
+*.pid
+*.out
+*.err
+*.bak
+
+# Arquivos de testes
+.coverage
+.tox/
+.cache/
+pytest_cache/
+*.cover
+.nosetests.xml
+
+# Arquivos de banco de dados (se gerados localmente)
+*.sqlite3
+*.db
+
+# Dependências do Flask (se gerados)
+instance/
+.env
+*.env
+*.ini
+
+# Builds e distribuições
+build/
+dist/
+*.egg-info/
+pip-wheel-metadata/
+
+# Docker (se usado)
+docker-compose.override.yml
